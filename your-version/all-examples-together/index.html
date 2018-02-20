@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>All together now ...</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
+        <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/bc82c983bb2efb61fd1a2c2b3e652d3dfa26d947/aframe/build/aframe-ar.min.js"></script>
+        <script src="https://unpkg.com/aframe-animation-component@3.0.0/dist/aframe-animation-component.min.js"></script>
+
+        <script src="/lib-ar/js/refraction-material.js"></script>
+
+        <script>
+            AFRAME.registerComponent('toggle-visibility-on-click', {
+                init: function () {
+                    document.body.addEventListener('click', function (e) {
+                        let currentValue = this.el.getAttribute('visible')
+                        console.log(currentValue)
+                        this.el.setAttribute('visible', !currentValue)
+                    }.bind(this))
+                }
+            })
+        </script>
+
+        <style>
+            .note {
+                position: absolute;
+                bottom: 0;
+                z-index: 1;
+
+                font-family: sans-serif;
+                background-color: rgba(255, 255, 255, 0.5);
+                font-size: 2.25rem;
+                padding: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="note">
+            Try clicking!
+        </div>
+
+        <a-scene embedded="" arjs="trackingMethod: best; debugUIEnabled: false;">
+            <!-- Create a anchor to attach your augmented reality-->
+            <a-anchor>
+                <!-- Add your augmented reality here-->
+
+                <a-entity scale="0.25 0.25 0.25">
+                    <a-sphere toggle-visibility-on-click visible="true" position="0 1.5 0" color="#BEE" animation="property: scale; from: 1 1 1; to: 1 0 1; loop: true; dir: alternate; easing: easeInOutElastic;"></a-sphere>
+                    <a-sphere toggle-visibility-on-click visible="false" position="0 1.5 0" refraction-material animation="property: scale; from: 1 1 1; to: 1 0 1; loop: true; dir: alternate; easing: easeInOutElastic;"></a-sphere>
+                </a-entity>
+
+                <a-plane
+                    position="0 0 0"
+                    scale="2 2 2"
+                    rotation="-90 0 0"
+                    material="color: white;"
+                    ></a-plane>
+            </a-anchor>
+            <!-- Define a static camera-->
+            <a-camera-static></a-camera-static>
+        </a-scene>
+    </body>
+</html>
+
