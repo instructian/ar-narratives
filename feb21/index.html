@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Creative Augmented Narratives</title>
+
+        <link rel="stylesheet" href="../css/reveal.css">
+        <link rel="stylesheet" href="../css/theme/black.css">
+        <style>
+            :root {
+                --text-color: #000;
+                --link-color: #0F4880;
+            }
+
+            body {
+                background-color: #2EAFAC;
+            }
+
+            .reveal,
+            .reveal h1,
+            .reveal h2,
+            .reveal h3,
+            .reveal h4,
+            .reveal h5,
+            .reveal h6,
+            .reveal .roll span:after,
+            .reveal section img {
+                color: var(--text-color);
+            }
+
+            .reveal .controls {
+                color: var(--text-color);
+            }
+
+            .reveal .progress {
+                background: rgba(0, 0, 0, 0.2);
+                color: var(--text-color);
+            }
+
+
+            .reveal a,
+            .reveal a:hover img,
+            .reveal .controls,
+            .reveal .progress {
+                color: var(--link-color);
+                text-decoration: underline;
+            }
+        </style>
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Creating Augmented Narratives
+
+                        👋🏼
+
+                        Wednesday, February 21, 2017
+                    </textarea>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Putting everything together
+
+                            Let's combine everything we learned on Monday!
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Making a simple narrative
+
+                            Let's combine everything we learned on Monday!
+
+                            [Example scene](/examples/all-examples-together/index.html)
+
+                            Now you try with [your own scene](/your-version/all-examples-together/index.html) using the pieces you created on Monday.
+                        </textarea>
+                    </section>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Augmenting your own things!
+
+                            - What did you bring today to augment?
+                                - If you didn't bring anything or pick an image, find an image right now that you'd like to tell a simple story around (5/10 minutes)
+                            - What kind of story/emotion do you want to tell around your chosen item?
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Putting It All Together, Redux
+
+                            Go through the four grammar operations but now with your chosen item
+
+                            - Two caveats:
+                                - All operations should be done to or related in some way to your object for the day
+                                - Keep in mind a unifying story for each operation
+                                    - doesn't have to be a linear or self-evident story, but should be making meaning in some way
+                            - You'll have 15 minutes for each operation, we'll then share how each operation adds to your story!
+                        </textarea>
+                    </section>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Last things (1/4)
+
+                            - Let's share! Go around &amp; recap your objects, what AR you added, and what small story you hoped to convey
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Last things (2/4)
+
+                            - More AR fun!
+                            - There are ways to hook into ARKit &amp; ARCore from a website:
+                                - [three.ar.js](https://github.com/google-ar/three.ar.js)
+                                - [WebARonARCore](https://github.com/google-ar/WebARonARCore)
+                                - [WebARonARKit](https://github.com/google-ar/WebARonARKit)
+                                - Video examples (links in descriptions):
+                                    - [stacked layers technique](https://www.youtube.com/watch?v=g28JCL5Hzbc)
+                                    - [an underwater soundscape](https://www.youtube.com/watch?v=P4DPBZclV6c)
+                                    - [scene transitioning, mixing AR ↔ VR](https://www.youtube.com/watch?v=jSSOpocOjA0)
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Last things (3/4)
+
+                            - [Mozilla's XR Viewer](https://blog.mozilla.org/blog/2017/10/20/bringing-mixed-reality-web/)
+                            - Uses [their own xr-polyfil](https://github.com/mozilla/webxr-polyfill)
+
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Last things (4/4)
+
+                            - Thanks! Feel free to contact me: [cwervo.com/contact](https://cwervo.com/contact) if you have any other questions, can't wait to see what y'all create!
+
+                        </textarea>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="../lib/js/head.min.js"></script>
+        <script src="../js/reveal.js"></script>
+
+        <script>
+            // More info about config and dependencies:
+// - https://github.com/hakimel/reveal.js#configuration
+// - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+    dependencies: [
+        { src: '../plugin/markdown/marked.js' },
+        { src: '../plugin/markdown/markdown.js' },
+        { src: '../plugin/notes/notes.js', async: true },
+        { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+    ]
+});
+        </script>
+    </body>
+</html>

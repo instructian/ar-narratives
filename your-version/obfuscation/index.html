@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Obfuscation Simple Example</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
+        <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/bc82c983bb2efb61fd1a2c2b3e652d3dfa26d947/aframe/build/aframe-ar.min.js"></script>
+        <script src="https://unpkg.com/aframe-animation-component@3.0.0/dist/aframe-animation-component.min.js"></script>
+    </head>
+
+    <body>
+        <a-scene embedded="" arjs="trackingMethod: best; debugUIEnabled: false;">
+            <!-- Create a anchor to attach your augmented reality-->
+            <a-anchor>
+                <!-- Add your augmented reality here-->
+                <a-sphere position="0 0.5 0" color="#BEE" animation="property: scale; from: 1 1 1; to: 1 0 1; loop: true; dir: alternate; easing: easeInOutElastic;"></a-sphere>
+            </a-anchor>
+            <!-- Define a static camera-->
+            <a-camera-static></a-camera-static>
+        </a-scene>
+    </body>
+</html>
+

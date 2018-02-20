@@ -1,0 +1,401 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Creative Augmented Narratives</title>
+
+        <link rel="stylesheet" href="../css/reveal.css">
+        <link rel="stylesheet" href="../css/theme/black.css">
+        <style>
+            :root {
+                --text-color: #000;
+                --link-color: #0F4880;
+            }
+
+            body {
+                background-color: #2EAFAC;
+            }
+
+            .reveal,
+            .reveal h1,
+            .reveal h2,
+            .reveal h3,
+            .reveal h4,
+            .reveal h5,
+            .reveal h6,
+            .reveal .roll span:after,
+            .reveal section img {
+                color: var(--text-color);
+            }
+
+            .reveal .controls {
+                color: var(--text-color);
+            }
+
+            .reveal .progress {
+                background: rgba(0, 0, 0, 0.2);
+                color: var(--text-color);
+            }
+
+
+            .reveal a,
+            .reveal a:hover img,
+            .reveal .controls,
+            .reveal .progress {
+                color: var(--link-color);
+                text-decoration: underline;
+            }
+
+            /* Style inline code to be a little fancy! */
+            .reveal code:not([class]) {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 5px;
+                padding: 0 5px;
+            }
+
+        </style>
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Creating Augmented Narratives
+
+                        Introduction
+
+                        Monday, February 19, 2017
+                    </textarea>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Introduction
+
+                            - What are you hoping to get out of the workshop?
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Agenda
+
+                            - I'll explain our tools, go through examples
+                            - We'll go through exercises together
+                            - Closing prompt + ideas
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### First thing's first
+
+                            Go to:
+
+                            ```
+                                           glitch.com/~augmented-narratives
+                            ```
+
+                            &amp; hit "Remix your own"
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Today's tools
+
+                            - [A-Frame](https://aframe.io)
+                            - [AR.js](https://github.com/jeromeetienne/AR.js/)
+                                - Specifically [the AR.js bridge](https://github.com/jeromeetienne/AR.js/tree/master/aframe)
+                            - [Three.js](https://threejs.org)
+                        </textarea>
+                    </section>
+
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### A-Frame Syntax
+
+                            ```html
+                            &lt;a-scene&gt;
+                                &lt;a-box color="blue"  position="0 0 -4"&gt;&lt;/a-box&gt;
+                            &lt;/a-scene&gt;
+                            ```
+
+                            <iframe height='265' scrolling='no' title='Simple A-Frame Example (Gray Area Workshop, 2/19)' src='//codepen.io/cwervo/embed/BYYKQd/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/cwervo/pen/BYYKQd/'>Simple A-Frame Example (Gray Area Workshop, 2/19)</a> by Andres Cuervo (<a href='https://codepen.io/cwervo'>@cwervo</a>) on <a href='https://codepen.io'>CodePen</a>. </iframe>
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### A-Frame Custom Components
+
+                            ```html
+                            &lt;a-scene&gt;
+                                &lt;a-box material="opacity: 0.5; color: blue;" position="0 0 -4"&gt;
+                                    &lt;a-box my-color="" position="0 -0.25 0" scale="0.5 0.5 0.5"&gt;&lt;/a-box&gt;
+                                &lt;/a-box&gt;
+                            &lt;/a-scene&gt;
+                            ```
+
+                            ```js
+                            AFRAME.registerComponent('my-color', {
+                                init : function () {
+                                    this.el.setAttribute('color', '#DAD')
+                                }
+                            })
+                            ```
+
+                            <iframe height='221' scrolling='no' title='Simple A-Frame Example w/ (Gray Area Workshop, 2/19)' src='//codepen.io/cwervo/embed/dddMNG/?height=221&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/cwervo/pen/dddMNG/'>Simple A-Frame Example w/ (Gray Area Workshop, 2/19)</a> by Andres Cuervo (<a href='https://codepen.io/cwervo'>@cwervo</a>) on <a href='https://codepen.io'>CodePen</a>.
+                            </iframe>
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### A-Frame + AR.js
+
+                            ```html
+                            &lt;!-- Include AR.js in the head, along with the A-Frame script. --&gt;
+                            &lt;a-scene embedded="" arjs="trackingMethod: best; debugUIEnabled: false;"&gt;
+                                &lt;!-- Create an anchor to attach your augmented reality--&gt;
+                                &lt;a-anchor&gt;
+                                    &lt;!-- Add your augmented reality here--&gt;
+                                    &lt;a-box position="0 0.5 0" material="opacity: 0.5; color: blue;"&gt;
+                                        &lt;a-box my-color="" position="0 -0.25 0" scale="0.5 0.5 0.5"&gt;&lt;/a-box&gt;
+                                    &lt;/a-box&gt;
+                                &lt;/a-anchor&gt;
+                                &lt;!-- Define a static camera--&gt;
+                                &lt;a-camera-static&gt;&lt;/a-camera-static&gt;
+                            &lt;/a-scene&gt;
+                            ```
+
+                            <a target="_blank" href="https://codepen.io/cwervo/full/NyyNwM/">Link to Codepen example</a>
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### A-Frame + AR.js + [_Animation_](https://github.com/ngokevin/kframe/tree/master/components/animation/)
+
+                            ```html
+                            &lt;!-- Include AR.js *and the K-Frame animation-component* in the head, along with the A-Frame script. --&gt;
+                            &lt;a-scene embedded="" arjs="trackingMethod: best; debugUIEnabled: false;"&gt;
+                                &lt;a-anchor&gt;
+                                    &lt;a-box position="0 0.5 0" material="opacity: 0.5; color: blue;"&gt;
+                                        &lt;a-box my-color="" position="0 -0.25 0" scale="0.5 0.5 0.5"
+                                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4000;"&gt;&lt;/a-box&gt;
+                                    &lt;/a-box&gt;
+                                &lt;/a-anchor&gt;
+                                &lt;a-camera-static&gt;&lt;/a-camera-static&gt;
+                            &lt;/a-scene&gt;
+                            ```
+
+                            <a target="_blank" href="https://codepen.io/cwervo/full/GQQWOR/">Link to Codepen example</a>
+                        </textarea>
+                    </section>
+
+                </section>
+
+                <section data-markdown>
+                    <section>
+                        <textarea data-template>
+                            ### A Grammar of AR Operations
+
+                            - Addition
+                            - Subtraction
+                            - Obfuscation
+                            - Magnification
+                        </textarea>
+                    </section>
+                </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Important Miscellany
+
+                        - You can go to the `assets` in your Glitch project to upload assets to add to your AR scenes
+                            - Click on an uploaded asset to get the URL for it
+                            - You only have 512MB of storage though!
+                        - You can add `.gltf` 3D models with:
+
+                        ```html
+                        &lt;a-entity gltf-model="src: url(...)"&gt;
+                        ```
+
+                        - similar for a `.obj`
+                    </textarea>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Exercises!
+
+                            For each AR grammar technique you'll be given:
+                            - an example
+                            - an exercise
+                            - a `your-version/<example>/index.html` file to edit
+                            - in each exercise try &amp; keep in mind how it could be used for narrative affect
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Addition
+
+                            - [Example Scene](/examples/addition/index.html)
+
+                            - Exercise:
+                                - Go download a model from [Poly](http://poly.google.com/)
+                                - Search for whatever you'd like, and then hit "Download"
+                                    - If you can't think of anything, try [this octopus](https://poly.google.com/view/9-b6-yqrwEe).
+                                - Replace the box in [your version](/your-version/addition/index.html) with your 3D model.
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Subtraction
+
+                            - [Example Scene](/examples/subtraction/index.html)
+
+                            - Exercise:
+                                - The example removes the marker by covering it in black, in [your version](/your-version/subtraction/index.html) try making it the same color as the paper.
+                                - Take a look [at the docs](https://aframe.io/docs/0.7.0/components/material.html) for A-Frame's material component to try turning the marker into an image
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Obfuscation
+
+                            - [Example Scene](/examples/obfuscation/index.html)
+
+                            - Exercise:
+                                - In [your version](/your-version/obfuscation/index.html) try changing [the geometry](https://aframe.io/docs/0.7.0/components/geometry.html#built-in-geometries) &amp; seeing how that affects the animation
+                                - Create your own animation to deform an object until it's unrecognizable. Animate whatever you'd like, but a few suggestions: `color`, `scale`, properties within `geometry`, properties within `material`.
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Magnification
+
+                            - [Example Scene](/examples/magnification/index.html)
+
+                            - Exercise:
+                                - For [your version](/your-version/magnification/index.html) try either messing around with `refraction-material`'s `refractionIndex` (a number between 0 and 1), or try coming up with alternative ways to "magnify" an object in your scene. Scale a sphere up from 0? Copy & scale blocks when you tap? What's your take on it?
+                        </textarea>
+                    </section>
+                </section>
+
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Extras
+
+                            If you're done with the basic grammar operation exercises you can take a look at the examples below &amp; try grabbing the relevant components to make your own version!
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Complex Refraction
+
+                            - [Example Scene](https://arexp.glitch.me/glass-donut/)
+                                - [Relevant component](https://glitch.com/edit/#!/arexp?path=client/wiggle-glass-donut.js:8:0)
+                                - Note that the [component we're using](/lib-ar/js/refraction-material.js) is slightly different because AR.js has since been updated, so copy [the more recent version](/lib-ar/js/refraction-material.js) if you're going to play around with the variables
+                                - Also, the library that's making the GUI in the Glass Donut example is called [dat.gui](https://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage)
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Basic Touch Interaction
+
+                            - [Example scene](https://arexp.glitch.me/pinch-scale/)
+                                - Try dragging your mouse across the screen while the AR is activated!
+                                - [Relevant component](https://glitch.com/edit/#!/arexp?path=public/pinch-scale/add-drag-interaction.js:1:0)
+                        </textarea>
+                    </section>
+
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Phone Orientation
+
+                            - [Example scene](https://arc.glitch.me/arc/?comic=11) (note that this one will only work on a phone)
+                                - While it's a little difficult to tell, the boat's orientation is tied to the orientation of the phone
+                                    - How could you reduce this? How you could you use this to make the user a part of a narrative? Grab the code &amp; give it a try!
+                                - [Relevant component](https://glitch.com/edit/#!/arc?path=js/comic-components.js:197:0) (line 197)
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Raycasting
+                            - Raycasting is a method of detecting intersection (simplified: cast a ray into a 3D scene, see what it hits). This can be used for tapping/dragging objects in a 3D scene and could lead to other interesting interactions.
+
+                            - While I haven't wrapped this into a compnent yet it shouldn't be that hard. Three.js' [Raycaster documentation](https://threejs.org/docs/#api/core/Raycaster) is fantastic, take a look at their examples section in particular if you're interested in adding this type of interaction to your work.
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Shaders
+
+                            - The A-Frame docs have [a pretty good section](https://aframe.io/docs/0.7.0/components/material.html#example-%E2%80%94-glsl-and-shaders) on webGL shaders, with the following examples:
+                                - Here's [a fragment shader with some animation](https://glitch.com/edit/#!/aframe-simple-shader)
+                                - If you're looking for vertex distortion, [this is a good starting point](https://glitch.com/edit/#!/aframe-displacement-shader?path=README.md:1:0)
+                        </textarea>
+                    </section>
+                </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Wrapping up
+
+                        - For Wednesday:
+                            - bring in an object or image you'd like to augment, we can place an AR marker on/around it
+                            - think about simple narratives to build
+                                - we went through a bunch of operations today, how can we combine, build upon, and relate them to tell simple augmented narratives?
+                                - ideas? thoughts? comments?
+                    </textarea>
+                </section>
+            </div>
+        </div>
+
+        <script src="../lib/js/head.min.js"></script>
+        <script src="../js/reveal.js"></script>
+
+        <script>
+            // More info about config and dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+Reveal.initialize({
+    dependencies: [
+        { src: '../plugin/markdown/marked.js' },
+        { src: '../plugin/markdown/markdown.js' },
+        { src: '../plugin/notes/notes.js', async: true },
+        { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+    ]
+});
+        </script>
+    </body>
+</html>
